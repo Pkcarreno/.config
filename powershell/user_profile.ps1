@@ -24,8 +24,6 @@ Set-PsFzfOption -PSReadLineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory
 Set-Alias vim nvim
 Set-Alias ll ls
 Set-Alias g git
-Set-Alias ps '!git push origin $(git rev-parse --abbrev-ref HEAD)'
-Set-Alias pl '!git pull origin $(git rev-parse --abbrev-ref HEAD)'
 Set-Alias grep findstr
 Set-Alias tig 'C:\Program Files\Git\usr\bin\tig.exe'
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
