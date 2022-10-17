@@ -1,4 +1,3 @@
-
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
@@ -7,17 +6,13 @@
       "segments": [
         {
           "foreground": "lightYellow",
-          "properties": {
-            "template": "{{ .UserName }} "
-          },
           "style": "plain",
           "type": "session"
         },
         {
           "foreground": "cyan",
           "properties": {
-            "style": "folder",
-            "template": "<#ffffff>in</> {{ .Path }} "
+            "style": "folder"
           },
           "style": "plain",
           "type": "path"
@@ -26,8 +21,7 @@
           "foreground": "#ff94df",
           "properties": {
             "branch_icon": " <#ff94df><b>\ue0a0 </b></>",
-            "fetch_stash_count": true,
-            "template": "<#ffffff>on</> {{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} "
+            "fetch_stash_count": true
           },
           "style": "plain",
           "type": "git"
@@ -41,9 +35,6 @@
       "segments": [
         {
           "foreground": "lightGreen",
-          "properties": {
-            "template": "\u276f"
-          },
           "style": "plain",
           "type": "text"
         }
@@ -52,6 +43,5 @@
     }
   ],
   "final_space": true,
-  "version": 1
+  "version": 2
 }
-

@@ -1,13 +1,10 @@
-# Prompt
+# set PowerShell to UTF-8
+[console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+
 Import-Module posh-git
-Import-Module oh-my-posh
+$omp_config = Join-Path $PSScriptRoot "pedro.omp.json"
+oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
 
-# Load prompt config
-function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
-$PROMPT_CONFIG = Join-Path (Get-ScriptDirectory) 'pedro.omp.json'
-oh-my-posh --init --shell pwsh --config $PROMPT_CONFIG | Invoke-Expression
-
-# Icons
 Import-Module -Name Terminal-Icons
 
 # PSReadLine
@@ -18,10 +15,13 @@ Set-PSReadLineOption -PredictionSource History
 
 # Fzf
 Import-Module PSFzf
-Set-PsFzfOption -PSReadLineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
+
+# Env
+$env:GIT_SSH = "C:\Windows\system32\OpenSSH\ssh.exe"
 
 # Alias
-Set-Alias vim nvim
+Set-Alias -Name vim -Value nvim
 Set-Alias ll ls
 Set-Alias g git
 Set-Alias grep findstr
