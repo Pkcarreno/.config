@@ -9,14 +9,24 @@ Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros si
 ### Instalaciones Previas
 
 - Windows Terminal
-- Powershell
+- Powershell 7 o Superior
 - Scoop
   - nvm
     - node lts
   - sudo
-  - Git
+  - git
   - neovim
   - fzf
+  - tree-sitter
+  - ripgrep
+  - oh-my-posh
+  - lua-language-server
+
+Ejecutar el siguiente comando para instalar todos los paquetes de scoop
+
+```Powershell
+  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server
+```
 
 ### Paso 1
 
@@ -38,9 +48,9 @@ source ~\.config\nvim\init.vim
 
 ### Paso 4
 
-Descargar `plug.vim` manualmente y colocar en la ruta `~/AppData/Local/nvim-data/site/autoload`. (para esto extraer el raw directamente del repo en GitHub)
+Instalar Vim Packer
 
 ### Paso 5
 
-Abrir terminal y ejecutar neovim. Una vez iniciado neovim ejecutar el comando `:PlugInstall` y reiniciar neovim (cerrar y volver abrir).
+Abrir terminal y ejecutar neovim. Una vez iniciado neovim ejecutar el comando `:PackerInstall` y reiniciar neovim (cerrar y volver abrir).
 
