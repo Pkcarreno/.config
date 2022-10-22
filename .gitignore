@@ -1,2 +1,4 @@
 /scoop
 /configstore
+*.bak
+*.orig
