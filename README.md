@@ -25,7 +25,7 @@ Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros si
 Ejecutar el siguiente comando para instalar todos los paquetes de scoop
 
 ```Powershell
-  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server
+  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server gcc
 ```
 
 ### Paso 1
@@ -43,7 +43,7 @@ Crear un archivo `init.vim` en la ruta `~/AppData/Local/nvim` que contenga:
 ```vim
 set runtimepath^=~\.config\nvim runtimepath+=~\.config\nvim\after
 let $packpath=&runtimepath
-source ~\.config\nvim\init.vim
+source ~\.config\nvim\init.lua
 ```
 
 ### Paso 4
