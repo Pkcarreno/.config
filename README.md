@@ -25,7 +25,7 @@ Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros si
 Ejecutar el siguiente comando para instalar todos los paquetes de scoop
 
 ```Powershell
-  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server gcc
+  scoop install git FiraCode-NF nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server gcc terminal-icons
 ```
 
 ### Paso 1
