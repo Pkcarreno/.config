@@ -21,7 +21,8 @@ ts.setup {
     "css",
     "html",
     "lua",
-    "rust"
+    "rust",
+    "astro"
   },
   autotag = {
     enable = true,
