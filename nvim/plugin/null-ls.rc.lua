@@ -31,7 +31,7 @@ null_ls.setup {
         end,
       })
     end
-  end
+  end,
 }
 
 vim.api.nvim_create_user_command(
