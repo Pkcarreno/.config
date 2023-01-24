@@ -1,6 +1,6 @@
 # Mi configuración
 
-Esta es la configuración que uso en mis dispositivos y el propósito de este repo es poder integrarla fácilmente en cualquier sistema que use.
+Configuración que uso en mis dispositivos, basado en la [configuracion de Takuya](https://github.com/craftzdog/dotfiles-public)
 
 Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros sistemas.
 
@@ -20,12 +20,11 @@ Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros si
   - tree-sitter
   - ripgrep
   - oh-my-posh
-  - lua-language-server
 
 Ejecutar el siguiente comando para instalar todos los paquetes de scoop
 
 ```Powershell
-  scoop install git FiraCode-NF nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh lua-language-server gcc terminal-icons
+  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh gcc terminal-icons
 ```
 
 ### Paso 1
