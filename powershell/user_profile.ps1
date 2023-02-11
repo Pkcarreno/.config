@@ -1,6 +1,8 @@
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
+$env:XDG_CONFIG_HOME = "$HOME/.config"
+
 Import-Module posh-git
 $omp_config = Join-Path $PSScriptRoot "pedro.omp.json"
 oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
