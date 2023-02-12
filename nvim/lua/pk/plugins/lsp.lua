@@ -48,7 +48,7 @@ return {
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
-      local on_attach = function(client, bufnr)
+      local on_attach = function(_, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
         --Enable completion triggered by <c-x><c-o>
@@ -113,7 +113,28 @@ return {
       }
 
       nvim_lsp.cssls.setup {
-          on_attach = on_attach,
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            enable_format_on_save(client, bufnr)
+          end,
+          capabilities = capabilities
+      }
+
+      nvim_lsp.html.setup {
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            enable_format_on_save(client, bufnr)
+          end,
+          filetypes = { "html" },
+          init_options = {
+              configurationSection = { "html", "css", "javascript" },
+              embeddedLanguages = {
+                  css = true,
+                  javascript = true
+              },
+              provideFormatter = true
+          },
+          single_file_support = true,
           capabilities = capabilities
       }
 
