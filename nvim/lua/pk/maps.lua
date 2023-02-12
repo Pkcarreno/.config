@@ -33,9 +33,11 @@ keymap.set('n', '<C-w><right>', '<C-w>>')
 keymap.set('n', '<C-w><up>', '<C-w>+')
 keymap.set('n', '<C-w><down>', '<C-w>-')
 
--- Move element
+-- Move selected line
+keymap.set("v", "H", "<gv")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "L", ">gv")
 
 keymap.set("x", "<leader>p", "\"_dP")
 
