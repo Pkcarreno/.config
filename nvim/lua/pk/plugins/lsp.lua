@@ -172,18 +172,26 @@ return {
       -- mason
       local mason = require("mason")
       local mason_lspconfig = require("mason-lspconfig")
+      local mason_tool = require("mason-tool-installer")
 
-      mason.setup({
-          ensure_installed = {
-              "prettierd",
-              "eslint_d",
-              "tsserver",
-          }
-      })
+      mason.setup()
 
       mason_lspconfig.setup {
           automatic_installation = true
       }
+
+      mason_tool.setup({
+          ensure_installed = {
+              "prettierd",
+              "eslint_d",
+              "html-lsp",
+              "rust-analyzer",
+              "typescript-language-server",
+              "tailwindcss-language-server",
+              "astro-language-server",
+              "lua-language-server",
+          }
+      })
 
       -- null-ls
       local null_ls = require("null-ls")
