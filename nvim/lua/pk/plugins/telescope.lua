@@ -83,5 +83,11 @@ return {
             layout_config = { height = 40 }
         })
       end)
+      vim.keymap.set('n', '<leader>gc', function()
+        builtin.git_branches()
+      end)
+      vim.keymap.set('n', '<leader>gs', function()
+        builtin.git_status()
+      end)
     end
 }
