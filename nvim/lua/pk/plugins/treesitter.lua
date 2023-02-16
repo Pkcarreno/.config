@@ -13,6 +13,7 @@ return {
         },
         ensure_installed = {
             "markdown",
+            "markdown_inline",
             "tsx",
             "toml",
             "fish",
