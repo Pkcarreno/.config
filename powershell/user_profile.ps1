@@ -30,6 +30,17 @@ Invoke-Expression (&sfsu hook)
 Set-Alias -Name vim -Value nvim
 Set-Alias ll ls
 Set-Alias g git
+function gsw { git switch $args }
+function gco { git checkout $args }
+function gs { git status }
+function ga { git add $args }
+function gaa { git add . }
+function gpl { git pull }
+function gplf { git pull --force }
+function gplff { git pull --force-with-lease }
+function gpsh { git push }
+function gpshf { git push --force }
+function gpshff { git push --force-with-lease }
 Set-Alias grep findstr
 Set-Alias tig 'C:\Program Files\Git\usr\bin\tig.exe'
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
