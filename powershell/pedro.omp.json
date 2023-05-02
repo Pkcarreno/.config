@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{if matchP \"Grupo Avanza\" .Folder}}{{else}}{{.Folder}} :: {{end}}{{if .Root}} :: root{{end}}{{ if matchP \"Grupo Avanza\" .PWD }} Grupo Avanza :: {{end}}{{.Shell}}",
   "blocks": [
     {
       "alignment": "left",
