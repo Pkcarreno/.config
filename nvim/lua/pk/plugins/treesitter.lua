@@ -3,18 +3,19 @@ return {
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   opts = {
-    highlight = {
+    highlight             = {
       enable = true,
       disable = {},
     },
-    indent = {
+    indent                = {
       enable = true,
       disable = {},
     },
-    ensure_installed = {
+    ensure_installed      = {
       "markdown",
       "markdown_inline",
       "tsx",
+      "typescript",
       "toml",
       "fish",
       "php",
@@ -26,9 +27,13 @@ return {
       "rust",
       "astro"
     },
-    autotag = {
+    autotag               = {
       enable = true,
     },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = true,
+    }
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
