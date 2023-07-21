@@ -1,16 +1,17 @@
-require('pk.base')
-require('pk.highlights')
-require('pk.maps')
-require('pk.initPlug')
+require('config.EcoVim')
 
-local has = vim.fn.has
--- local is_mac = has "macunix"
-local is_win = has "win32"
-local is_wsl = has "wsl"
+require('utils.globals')
+require('utils.functions')
 
-if is_win == 1 then
-  require('pk.windows')
-end
-if is_wsl == 1 then
-  require('pk.wsl')
-end
+require('config.options')
+require('config.lazy')
+require('config.keymappings')
+require('config.autocmds')
+
+require('internal.cursorword')
+
+require('lsp.config')
+require('lsp.setup')
+require('lsp.functions')
+
+require('snippets.react')
