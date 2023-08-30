@@ -46,8 +46,6 @@ vim.api.nvim_set_hl(0, "EcovimHeader", { bold = true, fg = c.blue.base })
 vim.api.nvim_set_hl(0, "EcovimHeaderInfo", { bold = true, fg = c.orange })
 vim.api.nvim_set_hl(0, "EcovimFooter", { bold = true, fg = c.orange })
 
-vim.api.nvim_set_hl(0, "EcovimNvimTreeTitle", { bold = true, fg = c.orange, bg = c.bg1 })
-
 -- github_dark Colorscheme Specific Config
 if EcoVim.colorscheme == "github_dark_high_contrast" then
   -- Lines
@@ -63,9 +61,6 @@ if EcoVim.colorscheme == "github_dark_high_contrast" then
   vim.api.nvim_set_hl(0, "BqfPreviewBorder", { link = "FloatBorder" })
   vim.api.nvim_set_hl(0, "BufferInactiveIndex", { link = "BufferInactive" })
   vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
-
-  -- Tree
-  vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { bg = "None", fg = "None" })
 
   -- Misc
   vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })

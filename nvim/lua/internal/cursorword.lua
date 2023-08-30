@@ -25,7 +25,6 @@ end
 local function matchadd()
   local disable_ft = {
     ['alpha'] = true,
-    ['NvimTree'] = true,
     ['lspsagafinder'] = true,
     ['dashboard'] = true,
   }
