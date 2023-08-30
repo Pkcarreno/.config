@@ -2,12 +2,6 @@ local bufferline = require("bufferline")
 
 bufferline.setup({
   options = {
-    close_command = function(n)
-      require("mini.bufremove").delete(n, false)
-    end,
-    right_mouse_command = function(n)
-      require("mini.bufremove").delete(n, false)
-    end,
     show_close_icon = false,
     color_icons = true,
     show_buffer_close_icons = false,
@@ -23,14 +17,5 @@ bufferline.setup({
         return true
       end
     end,
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = "File Explorer",
-        highlight = "EcovimNvimTreeTitle",
-        text_align = "center",
-        separator = true,
-      },
-    },
   },
 })
