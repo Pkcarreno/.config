@@ -1,12 +1,12 @@
 return {
-  -- Themes
+  -- Themess
   {
-    "folke/tokyonight.nvim",
+    'projekt0n/github-nvim-theme',
     lazy = false,
     priority = 1000,
     config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
+  --     -- load the colorscheme here
+      vim.cmd([[colorscheme github_dark_high_contrast]])
       require("config.colorscheme")
     end,
   },
