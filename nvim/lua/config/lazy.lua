@@ -15,6 +15,7 @@ require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
   install = { colorscheme = { "github_dark_high_contrast" } },
   checker = { enabled = true },
+  concurrency = 5,
   performance = {
     rtp = {
       disabled_plugins = {

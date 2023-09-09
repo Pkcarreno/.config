@@ -102,7 +102,7 @@ local source_mapping = {
   cmp_tabnine = EcoVim.icons.light,
   Copilot = EcoVim.icons.copilot,
   Codeium = EcoVim.icons.codeium,
-  nvim_lsp = EcoVim.icons.paragraph .. "LSP",
+  nvim_lsp = EcoVim.icons.stack .. "LSP",
   buffer = EcoVim.icons.buffer .. "BUF",
   nvim_lua = EcoVim.icons.bomb,
   luasnip = EcoVim.icons.snippet .. "SNP",
@@ -267,11 +267,11 @@ cmp.setup({
     { name = "calc",        priority = 3 },
   },
   sorting = {
+    priority_weight = 2,
     comparators = {
       deprioritize_snippet,
       cmp.config.compare.exact,
       cmp.config.compare.locality,
-      copilot_cmp_comparators.prioritize or function() end,
       cmp.config.compare.score,
       cmp.config.compare.recently_used,
       cmp.config.compare.offset,
@@ -294,4 +294,7 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+  performance = {
+    max_view_entries = 100,
+  }
 })

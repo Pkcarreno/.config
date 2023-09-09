@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "tsx",
     "typescript",
@@ -93,4 +93,5 @@ require'nvim-treesitter.configs'.setup {
       ['<cr>'] = 'textsubjects-smart', -- works in visual mode
     }
   },
+
 }
