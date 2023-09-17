@@ -25,7 +25,8 @@ mason_lsp.setup({
     "jsonls",
     "lua_ls",
     "prismals",
-    "tailwindcss"
+    "tailwindcss",
+    "gopls"
   },
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -107,6 +108,12 @@ lspconfig.vuels.setup({
   init_options = require("lsp.servers.vuels").init_options,
   on_attach = require("lsp.servers.vuels").on_attach,
   settings = require("lsp.servers.vuels").settings,
+})
+
+lspconfig.gopls.setup({
+  on_attach = on_attach,
+  settings = require("lsp.servers.gopls").settings,
+  capabilities = capabilities,
 })
 
 for _, server in ipairs({ "bashls", "emmet_ls", "graphql", "html", "prismals" }) do
