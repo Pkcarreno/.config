@@ -36,11 +36,9 @@ Para poder instalar el paquete `peco` es necesario añadir el [repo de **RPM Sph
 
 ## Setup
 
-1. En raiz (`~/`) crear una carpeta `tempConfig` (`~/tempConfig`).
-2. Ejecutar `git clone` de este proyecto dentro de la carpeta `tempConfig`.
-3. Mover los archivos dentro de la carpeta `tempConfig` a la raiz. _(Si existe una carpeta `.config` en la raiz, entonces mover manualmente los archivos dentro de `tempConfig/.config` a `.config`)_
-4. Remover la carpeta `tempConfig`.
-5. Ejecutar los pasos post setup.
+1. Ejecutar `git clone` de este proyecto dentro de la carpeta raiz (`~/`).
+2. Mover los archivos dentro de la carpeta `dotfiles` a la raiz. _(Si existe una carpeta `.config` en la raiz, entonces mover manualmente los archivos dentro de `dotfiles/.config` a `.config`)_
+3. Ejecutar los pasos post setup.
 
 ## Post Setup
 
