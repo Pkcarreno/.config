@@ -1,29 +1,21 @@
-/scoop
-/configstore
-*.bak
-*.orig
-nodemon.json
-/.android
+# Ignore everything
+/*
 
-# linux
-.gsd-keyboard.settings-ported
-GNOME-xdg-terminals.list
-dconf/
-enchant/
-evolution/
-gnome-boxes/
-gnome-control-center/
-gnome-initial-setup-done
-gtk-3.0/
-ibus/
-libvirt/
-pulse/
-user-dirs.dirs
-user-dirs.locale
-xdg-terminals.list
-Android Open Source Project/
-cronomix/
-dleyna-renderer-service.conf
-dleyna-server-service.conf
-goa-1.0/
-Code/
+# But not these files...
+!.gitignore
+!.gitconfig
+!README.md
+!.czrc
+!.config/
+.config/*
+
+# Nvim
+!.config/nvim/
+
+# Fish local config
+!.config/fish/
+.config/fish/config-local.fish
+.config/fish/fish_variables
+
+# Powershell
+!.config/powershell/
