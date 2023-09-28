@@ -1,55 +1,61 @@
-# Mi configuración
+Esta configuración esta inspirado en:
+- [La configuración de Takuya](https://github.com/craftzdog/dotfiles-public)
+- [Ecovim](https://github.com/ecosse3/nvim)
+- Y, [algunas buenas practicas](https://dotfiles.github.io/utilities/)
 
-Configuración que uso en mis dispositivos, basado en la [configuracion de Takuya](https://github.com/craftzdog/dotfiles-public)
+## Contenido
 
-Por ahora se usa únicamente en Windows por lo que no tengo nociones de otros sistemas.
+- NeoVim config
+- git config
+- fish config
+- PowerShell config
 
-## Windows
+## Instalación previa
 
-### Instalaciones Previas
+### Windows
 
-- Windows Terminal
-- Powershell 7 o Superior
-- Scoop
-  - nvm
-    - node lts
-  - sudo
-  - git
-  - neovim
-  - fzf
-  - tree-sitter
-  - ripgrep
-  - oh-my-posh
+Se requiere tener instalado [Scoop](https://scoop.sh/).
 
-Ejecutar el siguiente comando para instalar todos los paquetes de scoop
+Ejecutar el siguiente comando para instalar todos los paquetes necesarios
 
 ```Powershell
-  scoop install git nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh gcc terminal-icons
+  scoop install git peco nvm sudo neovim fzf tree-sitter ripgrep oh-my-posh gcc terminal-icons
 ```
 
-### Paso 1
+### Linux
 
-Hacer `git clone` de este repo en dirección raíz. (Al instalar Scoop este crea una carpeta `.config` en la dirección raíz, en dado caso que Git de conflicto porque la ruta ya existe, eliminar esta carpeta. El Git ignora la carpeta generada por Scoop)
+Instalar los siguientes paquetes:
 
-### Paso 2
-
-Abrir Windows terminal con la versión instalada de Powershell. Este instalara todos los paquetes que estén en el archivo de configuración. (podría tomar un tiempo el primer arranque)
-
-### Paso 3
-
-Crear un archivo `init.vim` en la ruta `~/AppData/Local/nvim` que contenga:
-
-```vim
-set runtimepath^=~\.config\nvim runtimepath+=~\.config\nvim\after
-let $packpath=&runtimepath
-source ~\.config\nvim\init.lua
+```bash
+  peco neovim fish eza
 ```
 
-### Paso 4
+#### Fedora
 
-Instalar Vim Packer
+Para poder instalar el paquete `peco` es necesario añadir el [repo de **RPM Sphere**](https://rpmsphere.github.io/)
 
-### Paso 5
+## Setup
 
-Abrir terminal y ejecutar neovim. Una vez iniciado neovim ejecutar el comando `:PackerInstall` y reiniciar neovim (cerrar y volver abrir).
+1. En raiz (`~/`) crear una carpeta `tempConfig` (`~/tempConfig`).
+2. Ejecutar `git clone` de este proyecto dentro de la carpeta `tempConfig`.
+3. Mover los archivos dentro de la carpeta `tempConfig` a la raiz. _(Si existe una carpeta `.config` en la raiz, entonces mover manualmente los archivos dentro de `tempConfig/.config` a `.config`)_
+4. Remover la carpeta `tempConfig`.
+5. Ejecutar los pasos post setup.
 
+## Post Setup
+
+### Fish
+
+Ejecutar el siguiente script para instalar el gestor de plugins de fish (fisher) e instalar los plugins del proyecto. _[Tomado de este comentario](https://github.com/jorgebucaran/fisher/issues/775#issuecomment-1703684632)_
+
+```fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+```
+
+### Node
+
+En caso de usar **fish** este va a instalar `nvm`, la version lts de `node` y algunos paquetes de manera automática.
+
+En caso de **no** tener **fish**, se requiere instalar `node` (preferible lts). A su vez, se debe ejecutar el siguiente comando `npm i -g commitizen`.
+
+Esto ultimo es cierto en el caso de **Windows**.
