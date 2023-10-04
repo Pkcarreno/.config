@@ -19,3 +19,4 @@
 
 # Powershell
 !.config/powershell/
+.config/powershell/*.bak
