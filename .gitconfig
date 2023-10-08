@@ -42,7 +42,7 @@
 	email = 34664891+Pkcarreno@users.noreply.github.com
 	name = Pedro Carreno
 [github]
-	user = craftzdog
+	user = pkcarreno
 [diff]
   tool = nvimdiff
 [difftool "nvimdiff"]
