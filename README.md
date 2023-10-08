@@ -27,7 +27,7 @@ Ejecutar el siguiente comando para instalar todos los paquetes necesarios
 Instalar los siguientes paquetes:
 
 ```bash
-  peco neovim fish eza fd ripgrep
+  peco neovim fish tmux eza fd ripgrep
 ```
 
 #### Fedora

@@ -20,3 +20,6 @@
 # Powershell
 !.config/powershell/
 .config/powershell/*.bak
+
+# Tmux
+!.config/tmux/
