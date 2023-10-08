@@ -19,7 +19,7 @@ Se requiere tener instalado [Scoop](https://scoop.sh/).
 Ejecutar el siguiente comando para instalar todos los paquetes necesarios
 
 ```Powershell
-  scoop install git peco nvm sudo neovim fzf tree-sitter fd ripgrep oh-my-posh gcc terminal-icons
+  scoop install git peco nvm sudo neovim fzf bat tree-sitter fd ripgrep oh-my-posh gcc terminal-icons
 ```
 
 ### Linux
@@ -27,7 +27,7 @@ Ejecutar el siguiente comando para instalar todos los paquetes necesarios
 Instalar los siguientes paquetes:
 
 ```bash
-  peco neovim fish tmux eza fd ripgrep
+  peco neovim fish tmux eza fd bat ripgrep
 ```
 
 #### Fedora
