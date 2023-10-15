@@ -8,6 +8,14 @@ EcoVim = {
         },
     },
     plugins = {
+        ai = {
+            copilot = {
+                enabled = true
+            },
+            codeium = {
+                enabled = true
+            },
+        },
         completion = {
             select_first_on_enter = false,
         },
