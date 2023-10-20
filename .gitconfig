@@ -58,3 +58,5 @@
 	process = git-lfs filter-process
 [ghq]
   root = ~/.ghq
+[include]
+  path = ~/.gitconfig-extra
