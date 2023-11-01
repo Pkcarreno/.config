@@ -103,6 +103,12 @@ return {
       require("config.colorscheme")
     end,
   },
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup({ default = true })
+    end,
+  },
 
   {
     -- Set lualine as statusline
@@ -133,6 +139,7 @@ return {
     lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -145,6 +152,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+
     },
     config = function()
       require('plugins.telescope')
