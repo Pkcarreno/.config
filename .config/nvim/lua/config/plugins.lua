@@ -86,11 +86,12 @@ return {
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'projekt0n/github-nvim-theme',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme onedark]])
+      vim.cmd([[colorscheme github_dark_dimmed]])
+      require("config.colorscheme")
     end,
   },
 
