@@ -85,7 +85,7 @@ return {
   },
 
   {
-    -- Theme inspired by Atom
+    -- Theme inspired by Github
     'projekt0n/github-nvim-theme',
     lazy = false,
     priority = 1000,
@@ -102,7 +102,6 @@ return {
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
