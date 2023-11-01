@@ -30,119 +30,119 @@ return {
     servers = nil,
   },
   {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
     keys = {
-      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+      { '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' },
     },
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     config = function()
-      require("plugins.cmp")
+      require('plugins.cmp')
     end,
     dependencies = {
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-calc",
-      "saadparwaiz1/cmp_luasnip",
-      { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-calc',
+      'saadparwaiz1/cmp_luasnip',
+      { 'L3MON4D3/LuaSnip', dependencies = 'rafamadriz/friendly-snippets' },
       {
-        "David-Kunz/cmp-npm",
+        'David-Kunz/cmp-npm',
         config = function()
-          require("plugins.cmp-npm")
+          require('plugins.cmp-npm')
         end,
       },
     },
   },
   -- LSP Addons
   {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    dependencies = "MunifTanjim/nui.nvim",
+    'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+    dependencies = 'MunifTanjim/nui.nvim',
     config = function()
-      require("plugins.dressing")
+      require('plugins.dressing')
     end,
   },
-  { "onsails/lspkind-nvim" },
+  { 'onsails/lspkind-nvim' },
   {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
+    'folke/trouble.nvim',
+    cmd = { 'TroubleToggle', 'Trouble' },
     config = function()
-      require("plugins.trouble")
+      require('plugins.trouble')
     end,
   },
-  { "nvim-lua/popup.nvim" },
+  { 'nvim-lua/popup.nvim' },
   {
-    "SmiteshP/nvim-navic",
+    'SmiteshP/nvim-navic',
     config = function()
-      require("plugins.navic")
+      require('plugins.navic')
     end,
-    dependencies = "neovim/nvim-lspconfig",
+    dependencies = 'neovim/nvim-lspconfig',
   },
   {
-    "pmizio/typescript-tools.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    ft = { "typescript", "typescriptreact" },
+    'pmizio/typescript-tools.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    ft = { 'typescript', 'typescriptreact' },
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
     },
     config = function()
-      require("plugins.typescript-tools")
+      require('plugins.typescript-tools')
     end,
   },
   {
-    "axelvc/template-string.nvim",
-    event = "InsertEnter",
+    'axelvc/template-string.nvim',
+    event = 'InsertEnter',
     ft = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
     },
-    config = true, -- run require("template-string").setup()
+    config = true, -- run require('template-string').setup()
   },
   {
-    "dmmulroy/tsc.nvim",
-    cmd = { "TSC" },
+    'dmmulroy/tsc.nvim',
+    cmd = { 'TSC' },
     config = true,
   },
   {
-    "dnlhc/glance.nvim",
+    'dnlhc/glance.nvim',
     config = function()
-      require("plugins.glance")
+      require('plugins.glance')
     end,
-    cmd = { "Glance" },
+    cmd = { 'Glance' },
     keys = {
-      { "gd", "<cmd>Glance definitions<CR>",      desc = "LSP Definition" },
-      { "gr", "<cmd>Glance references<CR>",       desc = "LSP References" },
-      { "gm", "<cmd>Glance implementations<CR>",  desc = "LSP Implementations" },
-      { "gy", "<cmd>Glance type_definitions<CR>", desc = "LSP Type Definitions" },
+      { 'gd', '<cmd>Glance definitions<CR>',      desc = 'LSP Definition' },
+      { 'gr', '<cmd>Glance references<CR>',       desc = 'LSP References' },
+      { 'gm', '<cmd>Glance implementations<CR>',  desc = 'LSP Implementations' },
+      { 'gy', '<cmd>Glance type_definitions<CR>', desc = 'LSP Type Definitions' },
     },
   },
   {
-    "antosha417/nvim-lsp-file-operations",
-    event = "LspAttach",
+    'antosha417/nvim-lsp-file-operations',
+    event = 'LspAttach',
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+      { 'nvim-lua/plenary.nvim' },
     },
     config = function()
-      require("lsp-file-operations").setup()
+      require('lsp-file-operations').setup()
     end
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = "kevinhwang91/promise-async",
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
     config = function()
-      vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-      vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-      vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+      vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
     end,
   },
 
@@ -200,13 +200,13 @@ return {
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme github_dark_dimmed]])
-      require("config.colorscheme")
+      require('config.colorscheme')
     end,
   },
   {
-    "nvim-tree/nvim-web-devicons",
+    'nvim-tree/nvim-web-devicons',
     config = function()
-      require("nvim-web-devicons").setup({ default = true })
+      require('nvim-web-devicons').setup({ default = true })
     end,
   },
 
@@ -215,9 +215,9 @@ return {
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     config = function()
-      require("plugins.lualine")
+      require('plugins.lualine')
     end,
-    event = "VeryLazy",
+    event = 'VeryLazy',
   },
 
   {
@@ -229,21 +229,21 @@ return {
     opts = {},
   },
 
-  -- "gc" to comment visual regions/lines
+  -- 'gc' to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
   {
-    "rcarriga/nvim-notify",
+    'rcarriga/nvim-notify',
     config = function()
-      require("notify").setup({
-        background_colour = "#000000",
+      require('notify').setup({
+        background_colour = '#000000',
       })
     end,
     init = function()
       local banned_messages = {
-        "No information available",
-        "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+.",
-        "LSP[tsserver] Inlay Hints request failed. File not opened in the editor.",
+        'No information available',
+        'LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+.',
+        'LSP[tsserver] Inlay Hints request failed. File not opened in the editor.',
       }
       vim.notify = function(msg, ...)
         for _, banned in ipairs(banned_messages) do
@@ -251,7 +251,7 @@ return {
             return
           end
         end
-        return require("notify")(msg, ...)
+        return require('notify')(msg, ...)
       end
     end,
   },

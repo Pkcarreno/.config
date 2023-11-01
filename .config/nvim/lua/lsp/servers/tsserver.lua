@@ -1,7 +1,7 @@
 local M = {}
 
-local filter = require("lsp.utils.filter").filter
-local filterReactDTS = require("lsp.utils.filterReactDTS").filterReactDTS
+local filter = require('lsp.utils.filter').filter
+local filterReactDTS = require('lsp.utils.filterReactDTS').filterReactDTS
 
 local on_attach = function(client, bufnr)
 	-- Modifying a server's capabilities is not recommended and is no longer
@@ -15,38 +15,38 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-	require("lsp-inlayhints").on_attach(client, bufnr)
+	require('lsp-inlayhints').on_attach(client, bufnr)
 end
 
 local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     silent = true,
     border = EcoVim.ui.float.border,
   }),
-	["textDocument/signatureHelp"] = vim.lsp.with(
+	['textDocument/signatureHelp'] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
     { border = EcoVim.ui.float.border }
   ),
-	["textDocument/publishDiagnostics"] = vim.lsp.with(
+	['textDocument/publishDiagnostics'] = vim.lsp.with(
 		vim.lsp.diagnostic.on_publish_diagnostics,
 		{ virtual_text = EcoVim.lsp.virtual_text }
 	),
-	["textDocument/definition"] = function(err, result, method, ...)
+	['textDocument/definition'] = function(err, result, method, ...)
 		if vim.tbl_islist(result) and #result > 1 then
 			local filtered_result = filter(result, filterReactDTS)
-			return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method, ...)
+			return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
 		end
 
-		vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
+		vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
 	end,
 }
 
 local settings = {
 	typescript = {
 		inlayHints = {
-			includeInlayParameterNameHints = "all",
+			includeInlayParameterNameHints = 'all',
 			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
 			includeInlayFunctionParameterTypeHints = true,
 			includeInlayVariableTypeHints = false,
@@ -60,7 +60,7 @@ local settings = {
 	},
 	javascript = {
 		inlayHints = {
-			includeInlayParameterNameHints = "all",
+			includeInlayParameterNameHints = 'all',
 			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
 			includeInlayFunctionParameterTypeHints = true,
 			includeInlayVariableTypeHints = false,

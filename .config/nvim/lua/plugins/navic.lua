@@ -1,7 +1,7 @@
-local navic = require("nvim-navic")
+local navic = require('nvim-navic')
 
-vim.api.nvim_set_hl(0, "NavicText", { link = "Comment" })
-vim.api.nvim_set_hl(0, "NavicSeparator", { link = "Comment" })
+vim.api.nvim_set_hl(0, 'NavicText', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'NavicSeparator', { link = 'Comment' })
 
 navic.setup {
     lsp = {
@@ -9,8 +9,8 @@ navic.setup {
         preference = nil,
     },
     highlight = true,
-    separator = " " .. Config.icons.caretRight .. " ",
+    separator = ' ' .. Config.icons.caretRight .. ' ',
     depth_limit = 0,
-    depth_limit_indicator = "..",
+    depth_limit_indicator = '..',
     safe_output = true
 }

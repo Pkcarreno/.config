@@ -11,11 +11,11 @@ require('telescope').setup {
   },
   extensions = {
     file_browser = {
-      theme = "dropdown",
+      theme = 'dropdown',
       mappings = {
         -- your custom insert mode mappings
-	["i"] = {
-          ["<C-w>"] = function()
+	['i'] = {
+          ['<C-w>'] = function()
             vim.cmd('normal vbd')
           end
 
