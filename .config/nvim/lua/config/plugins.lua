@@ -209,6 +209,13 @@ return {
       require('nvim-web-devicons').setup({ default = true })
     end,
   },
+ 
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("plugins.colorizer")
+    end,
+  },
 
   {
     -- Set lualine as statusline
