@@ -1,4 +1,4 @@
-local present, github = pcall(require, "github-theme")
+local present, github = pcall(require, 'github-theme')
 if not present then
   return
 end
@@ -10,10 +10,10 @@ github.setup({
     styles = {
       -- Style to be applied to different syntax groups
       -- Value is any valid attr-list value `:help attr-list`
-      comments = "NONE",
-      keywords = "italic",
-      functions = "NONE",
-      variables = "NONE",
+      comments = 'NONE',
+      keywords = 'italic',
+      functions = 'NONE',
+      variables = 'NONE',
     },
     darken = {
       floats = true,
@@ -28,4 +28,4 @@ github.setup({
 })
 
 -- Set Colorscheme
-vim.cmd("colorscheme " .. "github_dark_dimmed")
+vim.cmd('colorscheme ' .. 'github_dark_dimmed')

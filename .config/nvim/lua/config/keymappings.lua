@@ -7,8 +7,8 @@ table.unpack = table.unpack or unpack -- 5.1 compatibility
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', silent)
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap('n', 'k', 'v:count == 0 ? 'gk' : 'k'', { expr = true, silent = true })
+keymap('n', 'j', 'v:count == 0 ? 'gj' : 'j'', { expr = true, silent = true })
 
 -- See `:help telescope.builtin`
 keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -29,13 +29,13 @@ keymap('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S
 keymap('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 keymap('n', '<leader>sf', function() 
     require('telescope').extensions.file_browser.file_browser({
-      path = "%:p:h",
+      path = '%:p:h',
       cwd = vim.fn.expand('%:p:h'),
       respect_gitignore = false,
       hidden = true,
       grouped = true,
       previewer = false,
-      initial_mode = "normal",
+      initial_mode = 'normal',
       layout_config = { height = 40 }
     })
   end,

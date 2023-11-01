@@ -13,10 +13,12 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    lazy = false,
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
+      'mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/cmp-nvim-lsp',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -25,25 +27,123 @@ return {
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', opts = {} },
     },
+    servers = nil,
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    keys = {
+      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    },
   },
 
   {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    config = function()
+      require("plugins.cmp")
+    end,
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-calc",
+      "saadparwaiz1/cmp_luasnip",
+      { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
+      {
+        "David-Kunz/cmp-npm",
+        config = function()
+          require("plugins.cmp-npm")
+        end,
+      },
+    },
+  },
+  -- LSP Addons
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    dependencies = "MunifTanjim/nui.nvim",
+    config = function()
+      require("plugins.dressing")
+    end,
+  },
+  { "onsails/lspkind-nvim" },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    config = function()
+      require("plugins.trouble")
+    end,
+  },
+  { "nvim-lua/popup.nvim" },
+  {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("plugins.navic")
+    end,
+    dependencies = "neovim/nvim-lspconfig",
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    ft = { "typescript", "typescriptreact" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
     },
     config = function()
-      require('plugins.cmp')
+      require("plugins.typescript-tools")
+    end,
+  },
+  {
+    "axelvc/template-string.nvim",
+    event = "InsertEnter",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+    },
+    config = true, -- run require("template-string").setup()
+  },
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = { "TSC" },
+    config = true,
+  },
+  {
+    "dnlhc/glance.nvim",
+    config = function()
+      require("plugins.glance")
+    end,
+    cmd = { "Glance" },
+    keys = {
+      { "gd", "<cmd>Glance definitions<CR>",      desc = "LSP Definition" },
+      { "gr", "<cmd>Glance references<CR>",       desc = "LSP References" },
+      { "gm", "<cmd>Glance implementations<CR>",  desc = "LSP Implementations" },
+      { "gy", "<cmd>Glance type_definitions<CR>", desc = "LSP Type Definitions" },
+    },
+  },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    event = "LspAttach",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = function()
+      require("lsp-file-operations").setup()
     end
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+      vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+    end,
   },
 
   -- Useful plugin to show you pending keybinds.

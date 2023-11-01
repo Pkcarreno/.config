@@ -4,5 +4,6 @@
 		"vim",
 		"bit",
 		"require"
-	]
+	],
+    "workspace.checkThirdParty": false
 }
