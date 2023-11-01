@@ -1,130 +1,96 @@
--- Setup installer & lsp configs
-local mason_ok, mason = pcall(require, "mason")
-local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
-local ufo_config_handler = require("plugins.nvim-ufo").handler
+-- mason-lspconfig requires that these setup functions are called in this order
+-- before setting up the servers.
+require('mason').setup()
+require('mason-lspconfig').setup()
 
-if not mason_ok or not mason_lsp_ok then
-  return
-end
+-- Enable the following language servers
+--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+--
+--  Add any additional override configuration in the following tables. They will be passed to
+--  the `settings` field of the server config. You must look up that documentation yourself.
+--
+--  If you want to override the default filetypes that your language server will attach to you can
+--  define the property 'filetypes' to the map in question.
+local servers = {
+  -- clangd = {},
+  -- gopls = {},
+  -- pyright = {},
+  -- rust_analyzer = {},
+  -- tsserver = {},
+  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
-mason.setup({
-  ui = {
-    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-    border = EcoVim.ui.float.border or "rounded",
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
   },
-})
-
-mason_lsp.setup({
-  -- A list of servers to automatically install if they're not already installed
-  ensure_installed = {
-    "bashls",
-    "cssls",
-    "eslint",
-    "graphql",
-    "html",
-    "jsonls",
-    "lua_ls",
-    "prismals",
-    "tailwindcss",
-    "gopls"
-  },
-  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-  -- This setting has no relation with the `ensure_installed` setting.
-  -- Can either be:
-  --   - false: Servers are not automatically installed.
-  --   - true: All servers set up via lspconfig are automatically installed.
-  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-  automatic_installation = true,
-})
-
-local lspconfig = require("lspconfig")
-
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    silent = true,
-    border = EcoVim.ui.float.border,
-  }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = EcoVim.ui.float.border }),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = EcoVim.lsp.virtual_text }
-  ),
 }
 
-local function on_attach(client, bufnr)
-  -- set up buffer keymaps, etc.
-end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
 
--- Order matters
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+    }
+  end,
+}
 
-lspconfig.tailwindcss.setup({
-  capabilities = require("lsp.servers.tailwindcss").capabilities,
-  filetypes = require("lsp.servers.tailwindcss").filetypes,
-  handlers = handlers,
-  init_options = require("lsp.servers.tailwindcss").init_options,
-  on_attach = require("lsp.servers.tailwindcss").on_attach,
-  settings = require("lsp.servers.tailwindcss").settings,
-})
+-- [[ Configure LSP ]]
+--  This function gets run when an LSP connects to a particular buffer.
+local on_attach = function(_, bufnr)
+  -- NOTE: Remember that lua is a real programming language, and as such it is possible
+  -- to define small helper and utility functions so you don't have to repeat yourself
+  -- many times.
+  --
+  -- In this case, we create a function that lets us more easily define mappings specific
+  -- for LSP related items. It sets the mode, buffer and description for us each time.
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
 
-lspconfig.cssls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  on_attach = require("lsp.servers.cssls").on_attach,
-  settings = require("lsp.servers.cssls").settings,
-})
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
 
-lspconfig.eslint.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  on_attach = require("lsp.servers.eslint").on_attach,
-  settings = require("lsp.servers.eslint").settings,
-})
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-lspconfig.jsonls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  on_attach = on_attach,
-  settings = require("lsp.servers.jsonls").settings,
-})
+  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-lspconfig.lua_ls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  on_attach = on_attach,
-  settings = require("lsp.servers.lua_ls").settings,
-})
+  -- See `:help K` for why this keymap
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-lspconfig.vuels.setup({
-  filetypes = require("lsp.servers.vuels").filetypes,
-  handlers = handlers,
-  init_options = require("lsp.servers.vuels").init_options,
-  on_attach = require("lsp.servers.vuels").on_attach,
-  settings = require("lsp.servers.vuels").settings,
-})
+  -- Lesser used LSP functionality
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, '[W]orkspace [L]ist Folders')
 
-lspconfig.gopls.setup({
-  on_attach = on_attach,
-  settings = require("lsp.servers.gopls").settings,
-  capabilities = capabilities,
-})
-
-for _, server in ipairs({ "bashls", "emmet_ls", "graphql", "html", "prismals" }) do
-  lspconfig[server].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    handlers = handlers,
-  })
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
 end
-
-require("ufo").setup({
-  fold_virt_text_handler = ufo_config_handler,
-  close_fold_kinds = { "imports" },
-})
