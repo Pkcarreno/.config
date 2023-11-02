@@ -313,6 +313,7 @@ return {
       })
     end,
   },
+  { "tpope/vim-speeddating", lazy = false },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
