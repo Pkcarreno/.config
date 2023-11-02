@@ -178,7 +178,14 @@ return {
   },
 
   -- General
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require("plugins.comment")
+    end,
+  },
   {
     'folke/which-key.nvim',
      opts = {},
