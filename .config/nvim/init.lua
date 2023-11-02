@@ -7,5 +7,7 @@ require('config.lazy')
 require('config.keymappings')
 require('config.autocmds')
 
+require('internal.winbar')
+
 require('lsp.config')
 require('lsp.setup')
