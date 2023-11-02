@@ -53,6 +53,17 @@ local globals = {
   maplocalleader              = ',',        --- Map local leader key to comma
 }
 
+vim.opt.shortmess:append('c');
+vim.opt.formatoptions:remove('c');
+vim.opt.formatoptions:remove('r');
+vim.opt.formatoptions:remove('o');
+vim.opt.fillchars:append('stl: ');
+vim.opt.fillchars:append('eob: ');
+vim.opt.fillchars:append('fold: ');
+vim.opt.fillchars:append('foldopen: ');
+vim.opt.fillchars:append('foldsep: ');
+vim.opt.fillchars:append('foldclose:');
+
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
