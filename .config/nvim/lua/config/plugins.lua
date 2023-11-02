@@ -46,6 +46,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+      { "cljoly/telescope-repo.nvim" },
 
     },
     config = function()
@@ -228,6 +229,15 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     opts = {},
+  },
+  {
+    "echasnovski/mini.bufremove",
+    version = "*",
+    config = function()
+      require("mini.bufremove").setup({
+        silent = true,
+      })
+    end,
   },
   {
     "akinsho/bufferline.nvim",
