@@ -288,6 +288,19 @@ return {
       require("plugins.noice")
     end,
   },
+  {
+    "Wansmer/treesj",
+    lazy = true,
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    keys = {
+      { "gJ", "<cmd>TSJToggle<CR>", desc = "Toggle Split/Join" },
+    },
+    config = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+    end,
+  },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
