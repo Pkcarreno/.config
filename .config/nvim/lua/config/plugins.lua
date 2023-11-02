@@ -352,6 +352,11 @@ return {
     event = "VeryLazy",
     config = true,
   },
+  {
+    "nacro90/numb.nvim",
+    lazy = false,
+    config = true,
+  },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
