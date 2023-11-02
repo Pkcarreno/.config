@@ -346,6 +346,12 @@ return {
       { "<Leader>/ss", "<cmd>SessionManager save_current_session<CR>",     desc = "save session" },
     }
   },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = true,
+  },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
