@@ -44,6 +44,7 @@
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
   "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "df8cdf68234fbf056202a9684931c3dfa89988c1" },
+  "stay-in-place.nvim": { "branch": "main", "commit": "0628b6db8970fc731abf9608d6f80659b58932c9" },
   "tailwind-fold.nvim": { "branch": "main", "commit": "ee76814c51d940074077b63fa03827d95bab8e56" },
   "tailwind-sorter.nvim": { "branch": "main", "commit": "d910baa6f7c99ea3699310371a984c93ed408ea6" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "6e51d0cd6447cf2525412220ff0a2885eef9039c" },

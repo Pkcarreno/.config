@@ -53,6 +53,11 @@ return {
       require('plugins.telescope')
     end
   },
+  {
+    "gbprod/stay-in-place.nvim",
+    lazy = false,
+    config = true, -- run require("stay-in-place").setup()
+  },
 
   -- LSP Base
   {
