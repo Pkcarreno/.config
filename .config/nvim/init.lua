@@ -12,3 +12,5 @@ require('internal.cursorword')
 
 require('lsp.config')
 require('lsp.setup')
+
+require('snippets.react')
