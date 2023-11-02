@@ -479,4 +479,15 @@ return {
       { "<Leader>gci", '<cmd>GitConflictChooseTheirs<CR>', desc = 'choose incoming' },
     }
   },
+  {
+    "ThePrimeagen/git-worktree.nvim",
+    lazy = false,
+    config = function()
+      require("plugins.git.worktree")
+    end,
+    keys = {
+      { "<Leader>gww", desc = "worktrees" },
+      { "<Leader>gwc", desc = "create worktree" }
+    }
+  },
 }
