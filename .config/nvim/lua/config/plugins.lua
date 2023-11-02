@@ -238,11 +238,6 @@ return {
     end,
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
-  },
-  {
     "echasnovski/mini.bufremove",
     version = "*",
     config = function()
@@ -356,6 +351,20 @@ return {
     "nacro90/numb.nvim",
     lazy = false,
     config = true,
+  },
+  {
+    "echasnovski/mini.align",
+    lazy = false,
+    version = "*",
+    config = true,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    main = "ibl",
+    config = function()
+      require("plugins.indent")
+    end,
   },
 
   -- Snippets & Language & Syntax
