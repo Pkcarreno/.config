@@ -280,6 +280,14 @@ return {
       { "<Leader>bsr", "<cmd>BufferLineSortByRelativeDirectory<CR>", desc = "Sort by relative dir" },
     }
   },
+  {
+    "folke/noice.nvim",
+    cond = true,
+    lazy = false,
+    config = function()
+      require("plugins.noice")
+    end,
+  },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
