@@ -146,6 +146,14 @@ return {
     end,
   },
 
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("plugins.autopairs")
+    end,
+  },
+
   -- Useful plugin to show you pending keybinds.
   {
     'folke/which-key.nvim',
