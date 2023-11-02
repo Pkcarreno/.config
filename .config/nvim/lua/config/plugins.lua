@@ -314,6 +314,24 @@ return {
     end,
   },
   { "tpope/vim-speeddating", lazy = false },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      char = {
+        keys = { "f", "F", "t", "T" },
+      }
+    },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+      },
+    },
+  },
 
   -- Snippets & Language & Syntax
   'tpope/vim-sleuth',
