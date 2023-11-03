@@ -490,4 +490,17 @@ return {
       { "<Leader>gwc", desc = "create worktree" }
     }
   },
+
+  -- AI
+  {
+    "jcdickinson/codeium.nvim",
+    cond = true,
+    event = "InsertEnter",
+    cmd = "Codeium",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = true,
+  },
 }
