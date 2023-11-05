@@ -121,3 +121,9 @@ keymap("v", "X", '"_X', silent)
 
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
+
+-- Do nothing on capital Q
+keymap("n", "Q", "<nop>")
+
+-- Replace current word
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
