@@ -106,8 +106,6 @@ end
 -- ╰──────────────────────────────────────────────────────────╯
 local source_mapping = {
   npm = Config.icons.terminal .. 'NPM',
-  cmp_tabnine = Config.icons.light,
-  Copilot = Config.icons.copilot,
   Codeium = Config.icons.codeium,
   nvim_lsp = Config.icons.stack .. 'LSP',
   buffer = Config.icons.buffer .. 'BUF',
@@ -224,16 +222,6 @@ cmp.setup({
       item_with_kind.menu = vim.trim(item_with_kind.menu or '')
       item_with_kind.abbr = string.sub(item_with_kind.abbr, 1, item_with_kind.maxwidth)
 
-      if entry.source.name == 'cmp_tabnine' then
-        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-          item_with_kind.kind = ' ' .. lspkind.symbolic('Event', { with_text = false }) .. ' TabNine'
-          item_with_kind.menu = item_with_kind.menu .. entry.completion_item.data.detail
-        else
-          item_with_kind.kind = ' ' .. lspkind.symbolic('Event', { with_text = false }) .. ' TabNine'
-          item_with_kind.menu = item_with_kind.menu .. ' TBN'
-        end
-      end
-
       local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
       if completion_context ~= nil and completion_context ~= '' then
         item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_context
@@ -253,11 +241,6 @@ cmp.setup({
   -- You should specify your *installed* sources.
   sources = {
     {
-      name = 'copilot',
-      priority = 10,
-      max_item_count = 3,
-    },
-    {
       name = 'nvim_lsp',
       priority = 10,
       -- Limits LSP results to specific types based on line context (Fields, Methods, Variables)
@@ -266,7 +249,6 @@ cmp.setup({
     { name = 'npm',         priority = 9 },
     { name = 'codeium',     priority = 9 },
     { name = 'git',         priority = 7 },
-    { name = 'cmp_tabnine', priority = 7 },
     { 
       name = 'luasnip',
       priority = 7,
