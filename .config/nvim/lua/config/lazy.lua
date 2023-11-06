@@ -13,7 +13,7 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup('config.plugins', {
   defaults = { lazy = true },
-  install = { colorscheme = { 'onedark' } },
+  install = { colorscheme = { 'github_dark_dimmed' } },
   checker = { enabled = false }, -- automatically check for plugin updates
   concurrency = 5,
   performance = {
