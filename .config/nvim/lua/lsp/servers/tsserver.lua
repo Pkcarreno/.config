@@ -31,7 +31,7 @@ local handlers = {
   ),
 	['textDocument/publishDiagnostics'] = vim.lsp.with(
 		vim.lsp.diagnostic.on_publish_diagnostics,
-		{ virtual_text = 'rounded' }
+		{ virtual_text = true }
 	),
 	['textDocument/definition'] = function(err, result, method, ...)
 		if vim.tbl_islist(result) and #result > 1 then
