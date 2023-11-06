@@ -9,6 +9,7 @@ return {
       require('config.colorscheme')
     end,
   },
+  { 'nvim-lua/plenary.nvim'},
   {
     'nvim-tree/nvim-web-devicons',
     config = function()
@@ -26,6 +27,7 @@ return {
       'RRethy/nvim-treesitter-textsubjects',
     },
     build = ':TSUpdate',
+    event = 'BufReadPre',
     config = function ()
       require('plugins.treesitter')
     end
@@ -34,17 +36,14 @@ return {
   -- Navigating (Telescope/Tree/Refactor)
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
     lazy = false,
     dependencies = {
+      'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
       },
       { "cljoly/telescope-repo.nvim" },
 
