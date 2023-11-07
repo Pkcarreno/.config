@@ -29,6 +29,9 @@ require('lazy').setup('config.plugins', {
     },
   },
   debug = false,
+  ui = {
+    border = 'rounded',
+  }
 })
 
 vim.keymap.set('n', '<leader>/l', '<cmd>:Lazy<cr>')
