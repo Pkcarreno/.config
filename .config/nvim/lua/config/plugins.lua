@@ -101,6 +101,7 @@ return {
           require('plugins.cmp-npm')
         end,
       },
+      'petertriho/cmp-git',
     },
   },
 
