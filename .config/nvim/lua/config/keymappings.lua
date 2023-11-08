@@ -3,12 +3,12 @@ local silent = { silent = true }
 
 table.unpack = table.unpack or unpack -- 5.1 compatibility
 
--- Better window movement
-keymap("n", "sh", "<C-w>h", silent)
-keymap("n", "sj", "<C-w>j", silent)
-keymap("n", "sk", "<C-w>k", silent)
-keymap("n", "sl", "<C-w>l", silent)
-keymap("n", "<Space>", "<C-w>w")
+-- Keymaps for better default experience
+keymap({ 'n', 'v' }, '<Space>', '<Nop>', silent)
+
+-- Remap for dealing with word wrap
+keymap('n', 'k', 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
+keymap('n', 'j', 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
 
 -- H to move to the first non-blank character of the line
 keymap("n", "H", "^", silent)
@@ -25,57 +25,45 @@ keymap("v", "L", ">gv", silent)
 keymap("v", "`", "u", silent)
 keymap("v", "<A-`>", "U", silent)
 
--- Save file by CTRL-S
-keymap("n", "<C-s>", ":w<CR>", silent)
-keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
-
 -- Telescope
-keymap("n", ";f", "<CMD>lua require('telescope.builtin').find_files({ no_ignore = false, hidden = true })<CR>")
-keymap("n", ";r", "<CMD>lua require('telescope.builtin').live_grep()<CR>")
-keymap("n", "\\\\", "<CMD>lua require('telescope.builtin').buffers()<CR>")
-keymap("n", ";t", "<CMD>lua require('telescope.builtin').help_tags()<CR>")
-keymap("n", ";;", "<CMD>lua require('telescope.builtin').resume()<CR>")
-keymap("n", ";e", "<CMD>lua require('telescope.builtin').diagnostics()<CR>")
-keymap("n", "sf", "<CMD>lua require('telescope').extensions.file_browser.file_browser({ path = \"%:p:h\", cwd = vim.fn.expand('%:p:h'), respect_gitignore = false, hidden = true, grouped = true, previewer = false, initial_mode = \"normal\", layout_config = { height = 40 } })<CR>")
-keymap("n", "<leader>gc", "<CMD>lua require('telescope.builtin').git_branches()<CR>")
-keymap("n", "<leader>gs", "<CMD>lua require('telescope.builtin').git_status()<CR>")
+keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>")
+keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+keymap('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+keymap('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer' })
 
--- Remove highlights
-keymap("n", "<CR>", ":noh<CR><CR>", silent)
-
--- Buffers
-keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", silent)
-keymap("n", "gn", ":bn<CR>", silent)
-keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
-keymap("n", "gp", ":bp<CR>", silent)
-keymap("n", "<S-q>", ":lua require('mini.bufremove').delete(0, false)<CR>", silent)
-
--- Don't yank on delete char
-keymap("n", "x", '"_x', silent)
-keymap("n", "X", '"_X', silent)
-keymap("v", "x", '"_x', silent)
-keymap("v", "X", '"_X', silent)
-
--- Don't yank on visual paste
-keymap("v", "p", '"_dP', silent)
-
--- Quickfix
-keymap("n", "<Space>,", ":cp<CR>", silent)
-keymap("n", "<Space>.", ":cn<CR>", silent)
-
--- Toggle quicklist
-keymap("n", "<leader>q", "<cmd>lua require('utils').toggle_quicklist()<CR>", silent)
-
--- Open links under cursor in browser with gx
-if vim.fn.has('macunix') == 1 then
-  keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
-else
-  keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
-end
+keymap('n', ';f', function()
+   require('telescope.builtin').find_files({ no_ignore = false, hidden = true })
+  end,
+  { desc = '[S]earch file by [W]ord' }
+)
+keymap('n', ';r', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+keymap('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+keymap('n', 'sf', function()
+    require('telescope').extensions.file_browser.file_browser({
+      path = '%:p:h',
+      cwd = vim.fn.expand('%:p:h'),
+      respect_gitignore = false,
+      hidden = true,
+      grouped = true,
+      previewer = false,
+      initial_mode = 'normal',
+      layout_config = { height = 40 }
+    })
+  end,
+  {
+   desc = '[S]earch [F]iles',
+})
+keymap('n', '<leader>gb', '<CMD>lua require("telescope.builtin").git_branches()<CR>', { desc = '[G]it [B]ranches' })
+keymap('n', '<leader>gs', '<CMD>lua require("telescope.builtin").git_status()<CR>', { desc = '[G]it [S]tatus' })
 
 -- LSP
--- keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silent) -- Replaced with Glance plugin
--- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<CR>", silent) -- Replaced with Glance plugin
 keymap("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent)
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent)
 keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.code_action()<CR>", silent)
@@ -85,25 +73,25 @@ keymap("v", "<leader>cf", function()
   local start_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
   local end_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
 
-  vim.lsp.buf.format({
-    range = {
-      ["start"] = { start_row, 0 },
-      ["end"] = { end_row, 0 },
-    },
-    async = true,
-  })
+	vim.lsp.buf.format({
+		range = {
+			["start"] = { start_row, 0 },
+			["end"] = { end_row, 0 },
+		},
+		async = true,
+	})
 end, silent)
-keymap("n", "<leader>cl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
-keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
-keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silent)
-keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
-keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
-keymap("n", "K", function()
-  local winid = require("ufo").peekFoldedLinesUnderCursor()
-  if not winid then
-    vim.lsp.buf.hover()
-  end
-end)
+keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Buffers
+keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", silent)
+keymap("n", "gn", ":bn<CR>", silent)
+keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
+keymap("n", "gp", ":bp<CR>", silent)
+keymap("n", "<S-q>", ":lua require('mini.bufremove').delete(0, false)<CR>", silent)
 
 -- Increment/decrement
 keymap("n", "+", "<C-a>")
@@ -115,9 +103,6 @@ keymap("n", "dw", "vb\"_d")
 -- Select all
 keymap("n", "<C-a>", "gg<S-v>G")
 
--- New tab
-keymap("n", "te", ":tabedit<cr>")
-
 -- Split window
 keymap("n", "ss", ":split<Return><C-w>w")
 keymap("n", "sv", ":vsplit<Return><C-w>w")
@@ -127,3 +112,18 @@ keymap("n", "<C-w><left>", "<C-w><")
 keymap("n", "<C-w><right>", "<C-w>>")
 keymap("n", "<C-w><up>", "<C-w>+")
 keymap("n", "<C-w><down>", "<C-w>-")
+
+-- Don't yank on delete char
+keymap("n", "x", '"_x', silent)
+keymap("n", "X", '"_X', silent)
+keymap("v", "x", '"_x', silent)
+keymap("v", "X", '"_X', silent)
+
+-- Don't yank on visual paste
+keymap("v", "p", '"_dP', silent)
+
+-- Do nothing on capital Q
+keymap("n", "Q", "<nop>")
+
+-- Replace current word
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

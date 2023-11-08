@@ -37,7 +37,7 @@ wk.setup {
     group = "+", -- symbol prepended to a group
   },
   window = {
-    border = EcoVim.ui.float.border or "rounded", -- none, single, double, shadow, rounded
+    border = "rounded", -- none, single, double, shadow, rounded
     position = "bottom", -- bottom, top
     margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -93,25 +93,12 @@ local normal_mode_mappings = {
   ['9'] = 'which_key_ignore',
 
   -- single
-  ['='] = { '<cmd>vertical resize +5<CR>',                      'resize +5' },
-  ['-'] = { '<cmd>vertical resize -5<CR>',                      'resize +5' },
-  ['v'] = { '<C-W>v',                                           'split right' },
-  ['V'] = { '<C-W>s',                                           'split below' },
   ['q'] = { 'quicklist' },
-
-  ['/'] = {
-    name = 'Ecovim',
-    ['/'] = { '<cmd>Alpha<CR>',                                 'open dashboard' },
-    c = { '<cmd>e $MYVIMRC<CR>',                                'open config' },
-    i = { '<cmd>Lazy<CR>',                                      'manage plugins' },
-    u = { '<cmd>Lazy update<CR>',                               'update plugins' },
-    s = {
-      name = 'Session',
-    },
-  },
 
   a = {
     name = 'Actions',
+    n = { '<cmd>set nonumber!<CR>',                             'line numbers' },
+    r = { '<cmd>set norelativenumber!<CR>',                     'relative number' },
   },
 
   b = {
@@ -157,27 +144,23 @@ local normal_mode_mappings = {
 
   g = {
     name = 'Git',
-    a = { '<cmd>!git add %:p<CR>',                                              'add current' },
-    A = { '<cmd>!git add .<CR>',                                                'add all' },
-    b = { '<cmd>lua require("internal.blame").open()<CR>',                      'blame' },
-    B = { '<cmd>Telescope git_branches<CR>',                                    'branches' },
+    a = { '<cmd>!git add %:p<CR>',                                        'add current' },
+    A = { '<cmd>!git add .<CR>',                                          'add all' },
+    b = { '<cmd>lua require("internal.blame").open()<CR>',                'blame' },
+    B = { '<cmd>Telescope git_branches<CR>',                              'branches' },
     c = {
       name = 'Conflict',
     },
     h = {
       name = 'Hunk',
     },
-    i = { '<cmd>Octo issue list<CR>', 'Issues List'},
     l = {
       name = 'Log',
       A = {'<cmd>lua require("plugins.telescope").my_git_commits()<CR>',  'commits (Telescope)'},
-      a = {'<cmd>LazyGitFilter<CR>',                                      'commits'},
       C = {'<cmd>lua require("plugins.telescope").my_git_bcommits()<CR>', 'buffer commits (Telescope)'},
-      c = {'<cmd>LazyGitFilterCurrentFile<CR>',                           'buffer commits'},
     },
     m = { 'blame line' },
-    p = { '<cmd>Octo pr list<CR>',                                        'Pull Request List' },
-    s = { '<cmd>Telescope git_status<CR>',                                'Telescope status' },
+    s = { '<cmd>Telescope git_status<CR>',                                'telescope status' },
     w = {
       name = 'Worktree',
       w = 'worktrees',
@@ -192,7 +175,6 @@ local normal_mode_mappings = {
     l = { "<cmd>lua require'telescope'.extensions.repo.cached_list{file_ignore_patterns={'/%.cache/', '/%.cargo/', '/%.local/', '/%timeshift/', '/usr/', '/srv/', '/%.oh%-my%-zsh', '/Library/', '/%.cocoapods/'}}<CR>", 'list' },
     r = { 'refactor' },
     s = { "<cmd>SessionManager save_current_session<CR>",            'save session' },
-    t = { "<cmd>TodoTrouble<CR>",                                    'todo' },
   },
 
   r = {
@@ -206,12 +188,6 @@ local normal_mode_mappings = {
     h = { '<cmd>Telescope oldfiles hidden=true<CR>',                     'file history' },
     H = { '<cmd>lua require("plugins.telescope").command_history()<CR>', 'command history' },
     s = { '<cmd>Telescope search_history theme=dropdown<CR>',            'search history' },
-  },
-
-  t = {
-    name = 'Table Mode',
-    m = { 'toggle' },
-    t = { 'tableize' },
   },
 }
 
@@ -332,48 +308,9 @@ local function attach_zen(bufnr)
   })
 end
 
-local function attach_jest(bufnr)
-  wk.register({
-    j = {
-      name = "Jest",
-      f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', 'run current file' },
-      i = { '<cmd>lua require("neotest").summary.toggle()<CR>', 'toggle info panel' },
-      j = { '<cmd>lua require("neotest").run.run()<CR>', 'run nearest test' },
-      l = { '<cmd>lua require("neotest").run.run_last()<CR>', 'run last test' },
-      o = { '<cmd>lua require("neotest").output.open({ enter = true })<CR>', 'open test output'},
-      s = { '<cmd>lua require("neotest").run.stop()<CR>', 'stop' },
-    }
-  }, {
-    buffer = bufnr,
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  })
-end
-
-local function attach_spectre(bufnr)
-  wk.register({
-    ["R"] = { '[SPECTRE] Replace all'},
-    ["o"] = { '[SPECTRE] Show options'},
-    ["q"] = { '[SPECTRE] Send all to quicklist'},
-    ["v"] = { '[SPECTRE] Change view mode'},
-  }, {
-    buffer = bufnr,
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  })
-end
-
 return {
   attach_markdown = attach_markdown,
   attach_typescript = attach_typescript,
   attach_npm = attach_npm,
   attach_zen = attach_zen,
-  attach_jest = attach_jest,
-  attach_spectre = attach_spectre,
 }

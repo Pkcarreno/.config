@@ -1,4 +1,4 @@
-require('config.EcoVim')
+require('config')
 
 require('utils.globals')
 require('utils.functions')
@@ -8,6 +8,7 @@ require('config.lazy')
 require('config.keymappings')
 require('config.autocmds')
 
+require('internal.winbar')
 require('internal.cursorword')
 
 require('lsp.config')

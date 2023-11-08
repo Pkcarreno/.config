@@ -1,12 +1,11 @@
 local actions    = require('telescope.actions')
 local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
-local icons      = EcoVim.icons
-local fb_actions = require "telescope".extensions.file_browser.actions
+local icons      = Config.icons
 
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')
-require("telescope").load_extension("git_worktree")
-require('telescope').load_extension("file_browser")
+require('telescope').load_extension('file_browser')
 
 local git_icons = {
   added = icons.gitAdd,
@@ -46,7 +45,7 @@ require('telescope').setup {
     file_previewer    = require('telescope.previewers').vim_buffer_cat.new,
     grep_previewer    = require('telescope.previewers').vim_buffer_vimgrep.new,
     qflist_previewer  = require('telescope.previewers').vim_buffer_qflist.new,
-    mappings = {
+    mappings          = {
       i = {
         ["<C-x>"] = false,
         ["<C-j>"] = actions.move_selection_next,
@@ -60,36 +59,29 @@ require('telescope').setup {
       n = {
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
-        ["q"] = actions.close
-      },
-    },
+      }
+    }
   },
   extensions = {
     file_browser = {
-      theme = "dropdown",
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
+      theme = 'dropdown',
       mappings = {
         -- your custom insert mode mappings
-            ["i"] = {
-              ["<C-w>"] = function()
+	['i'] = {
+          ['<C-w>'] = function()
             vim.cmd('normal vbd')
           end
 
         },
-            ["n"] = {
-          -- your custom normal mode mappings
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
-            vim.cmd('startinsert')
-          end
-        },
       },
     },
-  },
+    fzf = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 }
-
 
 -- Implement delta as previewer for diffs
 
@@ -138,7 +130,7 @@ M.edit_neovim = function()
       color_devicons   = true,
       cwd              = "~/.config/nvim",
       previewer        = false,
-      prompt_title     = "Ecovim Dotfiles",
+      prompt_title     = "Dotfiles",
       sorting_strategy = "ascending",
       winblend         = 4,
       layout_config    = {
