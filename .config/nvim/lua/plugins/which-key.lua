@@ -183,11 +183,7 @@ local normal_mode_mappings = {
 
   s = {
     name = 'Search',
-    c = { '<cmd>Telescope colorscheme<CR>',                              'color schemes' },
-    d = { '<cmd>lua require("plugins.telescope").edit_neovim()<CR>',     'dotfiles' },
-    h = { '<cmd>Telescope oldfiles hidden=true<CR>',                     'file history' },
     H = { '<cmd>lua require("plugins.telescope").command_history()<CR>', 'command history' },
-    s = { '<cmd>Telescope search_history theme=dropdown<CR>',            'search history' },
   },
 }
 

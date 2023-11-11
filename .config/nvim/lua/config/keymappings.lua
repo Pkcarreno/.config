@@ -23,28 +23,26 @@ keymap("v", "L", ">gv", silent)
 
 -- Case change in visual mode
 keymap("v", "`", "u", silent)
-keymap("v", "<A-`>", "U", silent)
+keymap("v", "<S-`>", "U", silent)
 
--- Telescope
-keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>")
-keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-keymap('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-keymap('n', '<leader>/', function()
+-- Search
+keymap("n", "<leader>sg", "<CMD>lua require('plugins.telescope').project_files()<CR>", { desc = '[S]earch [G]it Files'})
+keymap('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ld Files' })
+keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
+keymap('n', '<leader>sc', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, { desc = '[S]earch in [C]urrent buffer' })
 
 keymap('n', ';f', function()
    require('telescope.builtin').find_files({ no_ignore = false, hidden = true })
   end,
-  { desc = '[S]earch file by [W]ord' }
+  { desc = 'Search file by word' }
 )
-keymap('n', ';r', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-keymap('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-keymap('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+keymap('n', ';r', require('telescope.builtin').live_grep, { desc = 'Search by grep' })
 keymap('n', 'sf', function()
     require('telescope').extensions.file_browser.file_browser({
       path = '%:p:h',
@@ -60,8 +58,14 @@ keymap('n', 'sf', function()
   {
    desc = '[S]earch [F]iles',
 })
-keymap('n', '<leader>gb', '<CMD>lua require("telescope.builtin").git_branches()<CR>', { desc = '[G]it [B]ranches' })
-keymap('n', '<leader>gs', '<CMD>lua require("telescope.builtin").git_status()<CR>', { desc = '[G]it [S]tatus' })
+
+-- Diagnostics
+keymap('n', '<leader>d', require('telescope.builtin').diagnostics, { desc = '[D]iagnostics' })
+keymap('n', '<leader>dr', require('telescope.builtin').resume, { desc = '[D]iagnostics: [R]esume' })
+keymap('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = '[D]iagnostic [P]revious message' })
+keymap('n', '<leader>dn', vim.diagnostic.goto_next, { desc = '[D]iagnostic [N]ext message' })
+keymap('n', '<leader>dm', vim.diagnostic.open_float, { desc = 'Open floating [D]iagnostic [M]essage' })
+keymap('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Open [D]iagnostics [L]ist' })
 
 -- LSP
 keymap("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent)
@@ -81,37 +85,33 @@ keymap("v", "<leader>cf", function()
 		async = true,
 	})
 end, silent)
-keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Buffers
 keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", silent)
-keymap("n", "gn", ":bn<CR>", silent)
+keymap("n", "<leader>bn", ":bn<CR>", { desc = '[B]uffer [N]ext' })
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
-keymap("n", "gp", ":bp<CR>", silent)
+keymap("n", "<leader>bp", ":bp<CR>", { desc = '[B]uffer [P]revious' })
 keymap("n", "<S-q>", ":lua require('mini.bufremove').delete(0, false)<CR>", silent)
 
 -- Increment/decrement
-keymap("n", "+", "<C-a>")
-keymap("n", "-", "<C-x>")
+keymap("n", "+", "<C-a>", silent)
+keymap("n", "-", "<C-x>", silent)
 
 -- Delete a word backwards
-keymap("n", "dw", "vb\"_d")
+keymap("n", "dw", "vb\"_d", silent)
 
 -- Select all
-keymap("n", "<C-a>", "gg<S-v>G")
+keymap("n", "<C-a>", "gg<S-v>G", silent)
 
 -- Split window
-keymap("n", "ss", ":split<Return><C-w>w")
-keymap("n", "sv", ":vsplit<Return><C-w>w")
+keymap("n", "<leader>ss", ":split<Return><C-w>w", { desc = '[S]plit Window' })
+keymap("n", "<leader>sv", ":vsplit<Return><C-w>w", { desc = '[S]plit [V]ertical Window' })
 
 -- Resize window
-keymap("n", "<C-w><left>", "<C-w><")
-keymap("n", "<C-w><right>", "<C-w>>")
-keymap("n", "<C-w><up>", "<C-w>+")
-keymap("n", "<C-w><down>", "<C-w>-")
+keymap("n", "<C-w><left>", "<C-w><", silent)
+keymap("n", "<C-w><right>", "<C-w>>", silent)
+keymap("n", "<C-w><up>", "<C-w>+", silent)
+keymap("n", "<C-w><down>", "<C-w>-", silent)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', silent)
@@ -123,7 +123,7 @@ keymap("v", "X", '"_X', silent)
 keymap("v", "p", '"_dP', silent)
 
 -- Do nothing on capital Q
-keymap("n", "Q", "<nop>")
+keymap("n", "Q", "<nop>", silent)
 
 -- Replace current word
-keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]eplace current word'})
