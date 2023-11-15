@@ -207,11 +207,10 @@ return {
   },
   {
     'rcarriga/nvim-notify',
-    config = function()
-      require('notify').setup({
-        background_colour = '#000000',
-      })
-    end,
+    opts = {
+      timeout = 5000,
+      background_colour = 'None',
+    },
     init = function()
       local banned_messages = {
         'No information available',
