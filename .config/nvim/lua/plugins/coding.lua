@@ -55,6 +55,16 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       table.insert(opts.sources, { name = "emoji" })
+
+      opts.window = {
+        completion = cmp.config.window.bordered({
+          winhighlight = "NormalFloat:CmpNormalFloat,FloatBorder:CmpFloatBorder",
+        }),
+        documentation = cmp.config.window.bordered({
+          winhighlight = "NormalFloat:CmpNormalFloat,FloatBorder:CmpFloatBorder",
+        }),
+      }
+
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
