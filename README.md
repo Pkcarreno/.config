@@ -1,6 +1,6 @@
 Esta configuración esta inspirado en:
+
 - [La configuración de Takuya](https://github.com/craftzdog/dotfiles-public)
-- [Ecovim](https://github.com/ecosse3/nvim)
 - Y, [algunas buenas practicas](https://dotfiles.github.io/utilities/)
 
 ## Contenido
@@ -9,6 +9,7 @@ Esta configuración esta inspirado en:
 - git config
 - fish config
 - PowerShell config
+- tmux config
 
 ## Instalación previa
 
