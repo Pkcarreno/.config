@@ -24,9 +24,6 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
--- Buffers
-keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
-keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
