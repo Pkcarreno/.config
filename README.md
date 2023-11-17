@@ -1,6 +1,7 @@
 Esta configuración esta inspirado en:
 
 - [La configuración de Takuya](https://github.com/craftzdog/dotfiles-public)
+- [LazyVim](https://www.lazyvim.org/)
 - Y, [algunas buenas practicas](https://dotfiles.github.io/utilities/)
 
 ## Contenido
