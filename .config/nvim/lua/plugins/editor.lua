@@ -17,6 +17,11 @@ return {
   },
 
   {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
+  {
     "echasnovski/mini.hipatterns",
     event = "BufReadPre",
     opts = {
