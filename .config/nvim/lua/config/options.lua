@@ -1,73 +1,48 @@
-local options = {
-  clipboard      = 'unnamedplus',           --- Copy-paste between vim and everything else
-  cmdheight      = 0,                       --- Give more space for displaying messages
-  completeopt    = 'menu,menuone,noselect', --- Better autocompletion
-  cursorline     = true,                    --- Highlight of current line
-  emoji          = false,                   --- Fix emoji display
-  expandtab      = true,                    --- Use spaces instead of tabs
-  foldcolumn     = '0',
-  foldnestmax    = 0,
-  foldlevel      = 99,                      --- Using ufo provider need a large value
-  foldlevelstart = 99,                      --- Expand all folds by default
-  ignorecase     = true,                    --- Needed for smartcase
-  laststatus     = 3,                       --- Have a global statusline at the bottom instead of one for each window
-  mouse          = 'a',                     --- Enable mouse
-  number         = true,                    --- Shows current line number
-  pumheight      = 10,                      --- Max num of items in completion menu
-  relativenumber = true,                    --- Enables relative number
-  scrolloff      = 8,                       --- Always keep space when scrolling to bottom/top edge
-  shiftwidth     = 2,                       --- Change a number of space characters inserted for indentation
-  showtabline    = 2,                       --- Always show tabs
-  signcolumn     = 'yes:2',                 --- Add extra sign column next to line number
-  smartcase      = true,                    --- Uses case in search
-  smartindent    = true,                    --- Makes indenting smart
-  smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
-  softtabstop    = 2,                       --- Insert 2 spaces for a tab
-  splitright     = true,                    --- Vertical splits will automatically be to the right
-  swapfile       = false,                   --- Swap not needed
-  tabstop        = 2,                       --- Insert 2 spaces for a tab
-  termguicolors  = true,                    --- Correct terminal colors
-  timeoutlen     = 400,                     --- Faster completion (cannot be lower than 200 because then commenting doesn't work)
-  undofile       = true,                    --- Sets undo to file
-  updatetime     = 100,                     --- Faster completion
-  viminfo        = '\'1000',                --- Increase the size of file history
-  wildignore     = '*node_modules/**',      --- Don't search inside Node.js modules (works for gutentag)
-  wrap           = false,                   --- Display long lines as just one line
-  writebackup    = false,                   --- Not needed
-  -- Neovim defaults
-  autoindent     = true,                    --- Good auto indent
-  backspace      = 'indent,eol,start',      --- Making sure backspace works
-  backup         = false,                   --- Recommended by coc
-  --- Concealed text is completely hidden unless it has a custom replacement character defined (needed for dynamically showing tailwind classes)
-  conceallevel   = 2,
-  concealcursor  = '',                      --- Set to an empty string to expand tailwind class when on cursorline 
-  encoding       = 'utf-8',                 --- The encoding displayed
-  errorbells     = false,                   --- Disables sound effect for errors
-  fileencoding   = 'utf-8',                 --- The encoding written to file
-  incsearch      = true,                    --- Start searching before pressing enter
-  showmode       = false,                   --- Don't show things like -- INSERT -- anymore}
-}
+vim.g.mapleader = " "
 
-local globals = {
-  mapleader                   = ' ',        --- Map leader key to SPC
-  maplocalleader              = ',',        --- Map local leader key to comma
-}
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
-vim.opt.shortmess:append('c');
-vim.opt.formatoptions:remove('c');
-vim.opt.formatoptions:remove('r');
-vim.opt.formatoptions:remove('o');
-vim.opt.fillchars:append('stl: ');
-vim.opt.fillchars:append('eob: ');
-vim.opt.fillchars:append('fold: ');
-vim.opt.fillchars:append('foldopen: ');
-vim.opt.fillchars:append('foldsep: ');
-vim.opt.fillchars:append('foldclose:');
+vim.opt.number = true
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+vim.opt.title = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.hlsearch = true
+vim.opt.backup = false
+vim.opt.showcmd = true
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 2
+vim.opt.expandtab = true
+vim.opt.scrolloff = 10
+vim.opt.shell = "fish"
+vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
+vim.opt.inccommand = "split"
+vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.smarttab = true
+vim.opt.breakindent = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.wrap = false -- No Wrap lines
+vim.opt.backspace = { "start", "eol", "indent" }
+vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
+vim.opt.wildignore:append({ "*/node_modules/*" })
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true -- Put new windows right of current
+vim.opt.splitkeep = "cursor"
+vim.opt.mouse = ""
 
-for k, v in pairs(globals) do
-  vim.g[k] = v
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+-- Add asterisks in block comments
+vim.opt.formatoptions:append({ "r" })
+
+vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
+vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
+
+if vim.fn.has("nvim-0.8") == 1 then
+  vim.opt.cmdheight = 0
 end

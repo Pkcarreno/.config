@@ -1,5 +1,6 @@
 # Ignore everything
 /*
+/**/.luarc.json
 
 # But not these files...
 !.gitignore

@@ -1,18 +1,10 @@
-require('config')
+if vim.loader then
+  vim.loader.enable()
+end
 
-require('utils.globals')
-require('utils.functions')
+_G.dd = function(...)
+  require("util.debug").dump(...)
+end
+vim.print = _G.dd
 
-require('config.options')
-require('config.lazy')
-require('config.keymappings')
-require('config.autocmds')
-
-require('internal.winbar')
-require('internal.cursorword')
-
-require('lsp.config')
-require('lsp.setup')
-require('lsp.functions')
-
-require('snippets.react')
+require("config.lazy")

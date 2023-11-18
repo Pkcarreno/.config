@@ -1,0 +1,58 @@
+return {
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = true,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = true,
+        darken = {
+          floats = true,
+        },
+      },
+      groups = {
+        all = {
+          CursorLineNr = { fg = "palette.orange" },
+          LineNr = { link = "Comment" },
+          NormalFloat = { bg = "None", fg = "None" },
+          FloatBorder = { bg = "None", fg = "palette.blue.bright" },
+          WhichKeyFloat = { bg = "None", fg = "palette.blue.bright" },
+          BqfPreviewBorder = { link = "FloatBorder" },
+          BufferInactiveIndex = { link = "BufferInactive" },
+          LspInfoBorder = { link = "FloatBorder" },
+          TelescopeBorder = { bg = "None", fg = "palette.blue.base" },
+          TelescopeNormal = { bg = "None", fg = "None" },
+          TelescopeTitle = { fg = "palette.blue.bright" },
+          TelescopeMatching = { fg = "palette.blue.base" },
+          MsgArea = { fg = "bg3" },
+          GitSignsCurrentLineBlame = { link = "Comment" },
+          StatusLine = { bg = "None" },
+          StatusLineNC = { bg = "None" },
+          BufferOffset = { fg = "palette.orange" },
+          LspInlayHint = { link = "LspCodeLens" },
+          CmpNormalFloat = { bg = "bg0", fg = "None" },
+          CmpFloatBorder = { bg = "bg0", fg = "palette.blue.bright" },
+          CmpBorderedWindoes_FloatBorder = { fg = "palette.blue.base" },
+          CmpItemAbbr = { fg = "fg2", bg = "None" },
+          CmpItemKindClass = { fg = "palette.orange" },
+          CmpItemKindConstructor = { fg = "palette.magenta.base" },
+          CmpItemKindFolder = { fg = "palette.blue.bright" },
+          CmpItemKindFunction = { fg = "palette.blue.base" },
+          CmpItemKindInterface = { fg = "palette.cyan.bright", bg = "None" },
+          CmpItemKindKeyword = { fg = "palette.magenta.bright" },
+          CmpItemKindMethod = { fg = "palette.red.base" },
+          CmpItemKindReference = { fg = "palette.red.bright" },
+          CmpItemKindSnippet = { fg = "fg2" },
+          CmpItemKindVariable = { fg = "palette.cyan.base", bg = "None" },
+          CmpItemKindText = { fg = "fg3" },
+          CmpItemMenu = { fg = "palette.pink.base", bg = "None" },
+          CmpItemAbbrMatch = { fg = "palette.blue.base", bg = "None" },
+          CmpItemAbbrMatchFuzzy = { fg = "palette.blue.base", bg = "None" },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("github-theme").setup(opts)
+    end,
+  },
+}
