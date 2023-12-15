@@ -76,8 +76,25 @@ return {
     "nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
     opts = function(_, opts)
-      local cmp = require("cmp")
       table.insert(opts.sources, { name = "emoji" })
+
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      -- utils, thanks to ecovim
+      local check_backspace = function()
+        local col = vim.fn.col(".") - 1
+        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+      end
+
+      local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          return false
+        end
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+      end
+      ---
 
       opts.window = {
         completion = cmp.config.window.bordered({
@@ -88,7 +105,7 @@ return {
         }),
       }
 
-      opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
+      opts.mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
