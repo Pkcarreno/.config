@@ -59,3 +59,11 @@ if os.getenv("TMUX") then
   keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Window up" })
   keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Window right" })
 end
+
+keymap.set("n", "<leader>r", function()
+  require("pk.hsl").replaceHexWithHSL()
+end)
+
+keymap.set("n", "<leader>i", function()
+  require("pk.lsp").toggleInlayHints()
+end)
