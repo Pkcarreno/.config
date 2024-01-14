@@ -48,6 +48,7 @@ return {
           CmpItemMenu = { fg = "palette.pink.base", bg = "None" },
           CmpItemAbbrMatch = { fg = "palette.blue.base", bg = "None" },
           CmpItemAbbrMatchFuzzy = { fg = "palette.blue.base", bg = "None" },
+          PackageInfoOutdatedVersion = { fg = "palette.orange", bg = "None" },
         },
       },
     },
