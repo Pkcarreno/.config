@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config-1.json
+
+version: "1"
+
+includes:
+  - system.yaml
+
+global:
+  default-command: snapshots
+  initialize: false
+  priority: low
+  min-memory: 100
+  prevent-sleep: true
+
+default:
+  password-file: "password.txt"
+  initialize: false
+  backup:
+    check-after: true
+    no-error-on-warning: true
+  retention:
+    before-backup: false
+    after-backup: true
+    keep-daily: 1
+    keep-hourly: 1
+    keep-weekly: 1
+    keep-monthly: 1
+    keep-within: 3h
+    keep-tag:
+      - forever
+    prune: false
+    tag: true
+    host: true
+
+local:
+  inherit: default
+
+external:
+  inherit: default
+
+cloud:
+  inherit: default
+  backup:
+    schedule: "*-*-* 14:00:00"
+    schedule-permission: system
+    schedule-priority: background
+    schedule-log: cloud-schedule-backup.log
+    schedule-lock-mode: default
+    schedule-lock-wait: 15m30s

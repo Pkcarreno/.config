@@ -25,3 +25,8 @@
 
 # Tmux
 !.config/tmux/
+
+# resticprofile
+!.config/resticprofile/
+.config/resticprofile/*
+!.config/resticprofile/profiles.yaml
