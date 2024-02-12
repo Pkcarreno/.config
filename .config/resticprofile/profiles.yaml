@@ -21,11 +21,10 @@ default:
   retention:
     before-backup: false
     after-backup: true
-    keep-daily: 1
-    keep-hourly: 1
-    keep-weekly: 1
-    keep-monthly: 1
-    keep-within: 3h
+    keep-daily: 14
+    keep-weekly: 4
+    keep-monthly: 12
+    keep-yearly: 2
     keep-tag:
       - forever
     prune: false
