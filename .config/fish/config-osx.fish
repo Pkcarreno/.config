@@ -1,6 +1,10 @@
 if type -q exa
-  alias ll "exa -l -g --icons"
-  alias lla "ll -a"
+    alias ll "exa -l -g --icons"
+    alias lla "ll -a"
+end
+
+if type -q tmux
+    alias ide "~/.scripts/ide"
 end
 
 # Inkdrop
