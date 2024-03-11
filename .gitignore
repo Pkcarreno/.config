@@ -16,6 +16,9 @@
 # Nvim
 !.config/nvim/
 
+# Helix
+!.config/helix/
+
 # Fish local config
 !.config/fish/
 .config/fish/config-local.fish
