@@ -2,6 +2,8 @@
 	excludesfile = ~/.globalgitignore
 	editor = nvim
 	ignorecase = false
+  autocrlf = false
+  eol = lf
 [push]
   default = simple
 [color]
