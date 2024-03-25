@@ -6,7 +6,7 @@ set -gx TERM xterm-256color
 set -g theme_color_scheme terminal-dark
 set -g fish_prompt_pwd_dir_length 1
 set -g theme_display_user no
-set -g theme_hide_hostname yes 
+set -g theme_hide_hostname yes
 set -g theme_hostname no
 
 # aliases
@@ -31,39 +31,27 @@ set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
 # Android
-set -gx ANDROID_HOME $HOME/Android/Sdk 
+set -gx ANDROID_HOME $HOME/Android/Sdk
 set -g PATH $ANDROID_HOME/platform-tools $PATH
 set -g PATH $ANDROID_HOME/emulator $PATH
 
-# NVM
-set --universal nvm_default_version lts
-set --universal nvm_default_packages commitizen np
-function __check_rvm --on-variable PWD --description 'Do nvm stuff'
-  status --is-command-substitution; and return
-
-  if test -f .nvmrc; and test -r .nvmrc;
-    nvm use
-  else
-  end
-end
-
 switch (uname)
-  case Darwin
-    source (dirname (status --current-filename))/config-osx.fish
-  case Linux
-    source (dirname (status --current-filename))/config-linux.fish
-  case '*'
-    source (dirname (status --current-filename))/config-windows.fish
+    case Darwin
+        source (dirname (status --current-filename))/config-osx.fish
+    case Linux
+        source (dirname (status --current-filename))/config-linux.fish
+    case '*'
+        source (dirname (status --current-filename))/config-windows.fish
 end
 
 set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
-  source $LOCAL_CONFIG
+    source $LOCAL_CONFIG
 end
 
 # pnpm
 set -gx PNPM_HOME "/home/pedro/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
