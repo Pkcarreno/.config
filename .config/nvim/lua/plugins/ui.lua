@@ -94,12 +94,10 @@ return {
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      local colors = require("github-theme.palette").load("github_dark_dimmed")
       require("incline").setup({
         highlight = {
           groups = {
-            InclineNormal = { guibg = colors.magenta.base, guifg = colors.black.base },
-            InclineNormalNC = { guifg = colors.pink.base, guibg = colors.bg1 },
+            InclineNormal = { guibg = "#a37e6f" },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
