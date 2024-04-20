@@ -94,13 +94,7 @@ return {
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      local _, pal, _ = require("borrowed.themes"):get("mayu")
       require("incline").setup({
-        highlight = {
-          groups = {
-            InclineNormal = { guibg = pal.speak, guifg = pal.sheet },
-          },
-        },
         window = { margin = { vertical = 0, horizontal = 1 } },
         hide = {
           cursorline = true,
