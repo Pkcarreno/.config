@@ -1,6 +1,7 @@
 Esta configuración esta inspirado en:
 
 - [La configuración de Takuya](https://github.com/craftzdog/dotfiles-public)
+- [la configuración de Chris Titus](https://github.com/ChrisTitusTech/powershell-profile)
 - [LazyVim](https://www.lazyvim.org/)
 - Y, [algunas buenas practicas](https://dotfiles.github.io/utilities/)
 
@@ -21,7 +22,7 @@ Se requiere tener instalado [Scoop](https://scoop.sh/).
 Ejecutar el siguiente comando para instalar todos los paquetes necesarios
 
 ```Powershell
-  scoop install git peco nvm sudo neovim fzf psfzf posh-git gzip bat tree-sitter fd ripgrep oh-my-posh gcc terminal-icons
+  scoop install git peco nvm sudo neovim gzip bat tree-sitter fd ripgrep gcc
 ```
 
 ### Linux
