@@ -1,0 +1,53 @@
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = 'tmux'
+args = ['attach']
+
+[window]
+dynamic_padding = true
+opacity = 0.94
+blur = true
+decorations_theme_variant = "Dark"
+resize_increments = true
+
+[font]
+size = 12
+
+[font.normal]
+family = 'BlexMono Nerd Font'
+style = 'Regular'
+
+# cursor colors
+[colors]
+cursor = { text = 'CellBackground', cursor = '#f5dcd8' }
+selection = { text = '#26233a', background = '#e0def4' }
+transparent_background_colors = true
+
+# Default colors
+[colors.primary]
+background = '#1e1e1e'
+foreground = '#908caa'
+
+# Normal colors
+[colors.normal]
+black = '#000000'
+red = '#eb6f92'
+green = '#3e8fb0'
+yellow = '#f6c177'
+blue = '#9ccfd8'
+magenta = '#eba4ac'
+cyan = '#9ccfd8'
+white = '#e0def4'
+
+# Bright colors
+[colors.bright]
+black = '#6e6a86'
+red = '#eb6f92'
+green = '#3e8fb0'
+yellow = '#f6c177'
+blue = '#9ccfd8'
+magenta = '#eba4ac'
+cyan = '#9ccfd8'
+white = '#e0def4'

@@ -20,6 +20,9 @@
 # Helix
 !.config/helix/
 
+# Alacritty
+!.config/alacritty/
+
 # Fish local config
 !.config/fish/
 .config/fish/config-local.fish
