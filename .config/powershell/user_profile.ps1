@@ -72,7 +72,7 @@ function uptime
   }
 }
 
-function reload-profile
+function reloadprofile
 {
   & $profile
 }
@@ -129,6 +129,21 @@ function tail
 {
   param($Path, $n = 10)
   Get-Content $Path -Tail $n
+}
+
+# Do scoop exist
+$SCOOP_EXIST = Test-CommandExists scoop
+
+function Install-From-Scoop($name)
+{
+  try
+  {
+    Invoke-Expression "scoop install $name"
+    Write-Host "$name installed successfully. Initializing..."
+  } catch
+  {
+    return $_
+  }
 }
 
 # Quick File Creation
@@ -204,19 +219,50 @@ $pure.PwdFormatter = {
   ) -join '/'
 }
 
-if (Get-Command zoxide -ErrorAction SilentlyContinue)
+$pure.UserColor = '38;5;242;4'
+
+$pure.PrePrompt = {
+  param ($user, $cwd, $git, $slow)
+  $seperator = $pure._branchcolor +  " ❯ "
+  "`n$user{0}$cwd{1}$git$slow " -f
+    ($user ? $seperator : ''),
+    ($git ? $seperator : '')
+}
+
+if (Test-CommandExists zoxide)
 {
   Invoke-Expression (& { (zoxide init powershell | Out-String) })
 } else
 {
-  if (Get-Command scoop -ErrorAction SilentlyContinue)
+  if ($SCOOP_EXIST)
   {
     Write-Host "zoxide command not found. Attempting to install via scoop..."
     try
     {
-      Invoke-Expression "scoop install zoxide"
-      Write-Host "zoxide installed successfully. Initializing..."
+      Install-From-Scoop "zoxide"
       Invoke-Expression (& { (zoxide init powershell | Out-String) })
+    } catch
+    {
+      Write-Error "Failed to install zoxide. Error: $_"
+    }
+  } else
+  {
+    Write-Error "Install scoop in order to install zoxide."
+  }
+}
+
+if (Test-CommandExists fnm)
+{
+  fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
+} else
+{
+  if ($SCOOP_EXIST)
+  {
+    Write-Host "fnm command not found. Attempting to install via scoop..."
+    try
+    {
+      Install-From-Scoop "fnm"
+      fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
     } catch
     {
       Write-Error "Failed to install zoxide. Error: $_"
