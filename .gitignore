@@ -35,6 +35,7 @@
 
 # Tmux
 !.config/tmux/
+.config/tmux/local.conf
 
 # Own Scripts
 !.scripts/ide
