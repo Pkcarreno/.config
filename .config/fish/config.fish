@@ -21,9 +21,6 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
-# NodeJS
-set -gx PATH node_modules/.bin $PATH
-
 # Go
 set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
@@ -32,6 +29,24 @@ set -gx PATH $GOPATH/bin $PATH
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -g PATH $ANDROID_HOME/platform-tools $PATH
 set -g PATH $ANDROID_HOME/emulator $PATH
+
+if type -q eza
+    alias ll "eza -l -g --icons"
+    alias lla "ll -a"
+end
+
+if type -q tmux
+    alias ide "~/.scripts/ide"
+end
+
+if type -q /home/linuxbrew/.linuxbrew/bin/brew
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    set -Ux HOMEBREW_NO_AUTO_UPDATE 1
+end
+
+# Fzf
+set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
+set -g FZF_LEGACY_KEYBINDINGS 0
 
 switch (uname)
     case Darwin
@@ -46,5 +61,3 @@ set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
 end
-
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
