@@ -33,9 +33,7 @@ Instalar los siguientes paquetes:
   peco neovim fish tmux eza fd bat ripgrep
 ```
 
-#### Fedora
-
-Para poder instalar el paquete `peco` es necesario añadir el [repo de **RPM Sphere**](https://rpmsphere.github.io/)
+nota: _recomendado usar homebrew_
 
 ## Setup
 
@@ -55,8 +53,6 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 
 ### Node
 
-En caso de usar **fish** este va a instalar `nvm`, la version lts de `node` y algunos paquetes de manera automática.
+En caso de usar **fish** este va a instalar `nvm`, en el caso de usar **windows** se instalara `nvm` al ejecutar el comando de scoop.
 
-En caso de **no** tener **fish**, se requiere instalar `node` (preferible lts). A su vez, se debe ejecutar el siguiente comando `npm i -g commitizen`.
-
-Esto ultimo es cierto en el caso de **Windows**.
+Cuando se tenga nvm se debe instalar la version lts de node, y, posteriormente, se debe ejecutar el siguiente comando `npm i -g commitizen`.
