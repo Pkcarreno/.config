@@ -25,11 +25,6 @@ set -gx PATH ~/.local/bin $PATH
 set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-# Android
-set -gx ANDROID_HOME $HOME/Android/Sdk
-set -g PATH $ANDROID_HOME/platform-tools $PATH
-set -g PATH $ANDROID_HOME/emulator $PATH
-
 if type -q eza
     alias ll "eza -l -g --icons"
     alias lla "ll -a"
