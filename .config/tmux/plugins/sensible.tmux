@@ -1,6 +1,6 @@
+#!/usr/bin/env bash
 # from https://github.com/tmux-plugins/tmux-sensible
 # last commit: 25cb91f
-#!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
