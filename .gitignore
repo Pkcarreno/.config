@@ -34,9 +34,6 @@
 # Nvim
 !.config/nvim/
 
-# Helix
-!.config/helix/
-
 # Alacritty
 !.config/alacritty/
 .config/alacritty/local.toml
