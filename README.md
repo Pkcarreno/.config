@@ -55,4 +55,4 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 
 En caso de usar **fish** este va a instalar `nvm`, en el caso de usar **windows** se instalara `nvm` al ejecutar el comando de scoop.
 
-Cuando se tenga nvm se debe instalar la version lts de node, y, posteriormente, se debe ejecutar el siguiente comando `npm i -g commitizen`.
+Cuando se tenga nvm se debe instalar la version lts de node, y, posteriormente, se debe ejecutar el siguiente comando `npm i -g czg`. En el caso de usar **fish** debe instalar una version de node mediante **nvm**, este instalara los paquetes necesarios automaticamente gracias al parametro [$nvm_default_packages](https://github.com/jorgebucaran/nvm.fish#nvm_default_packages)
